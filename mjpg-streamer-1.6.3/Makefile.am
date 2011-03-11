@@ -14,7 +14,14 @@ mjpg_streamer_LDADD =
 
 lib_LTLIBRARIES = libinput_uvc.la liboutput_file.la liboutput_http.la libinput_testpicture.la liboutput_autofocus.la libinput_gspcav1.la 
 
-#lib_LTLIBRARIES = libinput_gspcav1.la
+INCLUDES = -I$(top_srcdir)/src/*.h
+INCLUDES += -I$(top_srcdir)/plugins/*.h
+INCLUDES += -I$(top_srcdir)/plugins/input_uvc/*.h
+INCLUDES += -I$(top_srcdir)/plugins/input_gspcav1/*.h
+INCLUDES += -I$(top_srcdir)/plugins/input_testpicture/*.h
+INCLUDES += -I$(top_srcdir)/plugins/output_autofocus/*.h
+INCLUDES += -I$(top_srcdir)/plugins/output_http/*.h
+
 libinput_gspcav1_la_SOURCES = plugins/input_gspcav1/spcav4l.c
 				plugins/input_gspcav1/utils.c
 				plugins/input_gspcav1/encoder.c
@@ -31,7 +38,7 @@ libinput_uvc_la_SOURCES = plugins/input_uvc/input_uvc.c
 			plugins/input_uvc/dynctrl.c
 #libinput_uvc_la_LIBADD = -linput_gspcav1
 #libinput_uvc_la_LIBADD = $(top_builddir)/.libs/libinput_gspcav1.so
-libinput_uvc_la_LIBADD = 
+libinput_uvc_la_LIBADD = libinput_gspcav1.la
 #libinput_uvcincludedir = $(includedir)
 #libinput_uvcinclude_HEADERS = $(top_srcdir)/plugins/input_uvc/v4l2uvc.h
 
